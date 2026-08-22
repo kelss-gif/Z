@@ -444,8 +444,8 @@ let audioCtx = null, analyser = null, micStream = null, rafId = null;
 let holdBlowInterval = null;
 let blowStartTime = null;
 let holdProgress = 0;
-const BLOW_THRESHOLD = 0.16;
-const BLOW_DURATION  = 500;
+const BLOW_THRESHOLD = 0.08;
+const BLOW_DURATION  = 300;
 const flames = [0,1,2,3].map(i => document.getElementById('flame-' + i));
 
 // ── OPEN / CLOSE ──
@@ -514,7 +514,7 @@ function listenLoop() {
   document.getElementById('meter-fill').style.width = (avg * 100) + '%';
 
   if (candlesLit) {
-    const bend = Math.min(avg * 200, 65);
+    const bend = Math.min(avg * 320, 65);
     flames.forEach(f => {
       if (f && !f.classList.contains('blown'))
         f.style.transform = bend > 5 ? `rotate(${bend}deg)` : '';
